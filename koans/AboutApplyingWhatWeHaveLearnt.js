@@ -98,10 +98,18 @@ console.log(productsICanEat);
 
     /* chain() together map(), flatten() and reduce() */
 
-    _(products).chain();
-      _.map(function (products) {return products.ingridients});
-      _.flatten(s);
-      _.reduce(function(memo, num){return memo + num});
+    _.chain(products);
+      .map(function (pizza) {return products.ingridients})
+      .flatten()
+      .reduce(function(ingredientObj, ingredient){
+        if(ingredientObj[ingredient]){
+          ingredientObj[ingredient] += 1;
+        }else{
+          ingredientObj[ingredient] = 1;
+        }
+        return ingredientObj;
+      } ingredientCount);
+      .value();
 
 console.log(_(products));
     expect(ingredientCount['mushrooms']).toBe(2);
